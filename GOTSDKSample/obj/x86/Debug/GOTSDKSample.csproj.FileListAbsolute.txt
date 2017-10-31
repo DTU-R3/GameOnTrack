@@ -1,0 +1,61 @@
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDKSample.exe
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDKSample.pdb
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDK.dll
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\HelixToolkit.Wpf.dll
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDK.xml
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csprojResolveAssemblyReference.cache
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\CalibrationWindow.baml
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MergeWindow.baml
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\CalibrationWindow.g.cs
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MergeWindow.g.cs
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\App.g.cs
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.cache
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.lref
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MainWindow.baml
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.g.resources
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.Properties.Resources.resources
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csproj.GenerateResource.Cache
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.exe
+C:\Users\alle\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.pdb
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.exe
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.pdb
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDKSample.exe
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDKSample.pdb
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDK.dll
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\HelixToolkit.Wpf.dll
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\bin\Debug\GOTSDK.xml
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csprojResolveAssemblyReference.cache
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\CalibrationWindow.baml
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MergeWindow.baml
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\CalibrationWindow.g.cs
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MergeWindow.g.cs
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\App.g.cs
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.cache
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.lref
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\MainWindow.baml
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.g.resources
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.Properties.Resources.resources
+C:\Users\zhong\Dropbox\Master thesis\Tools\GameOnTrack API\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csproj.GenerateResource.Cache
+C:\Users\zhong\Desktop\GOTSDKSample\bin\Debug\GOTSDKSample.exe
+C:\Users\zhong\Desktop\GOTSDKSample\bin\Debug\GOTSDKSample.pdb
+C:\Users\zhong\Desktop\GOTSDKSample\bin\Debug\GOTSDK.dll
+C:\Users\zhong\Desktop\GOTSDKSample\bin\Debug\HelixToolkit.Wpf.dll
+C:\Users\zhong\Desktop\GOTSDKSample\bin\Debug\GOTSDK.xml
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csprojResolveAssemblyReference.cache
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\CalibrationWindow.baml
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\MergeWindow.baml
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\MainWindow.g.cs
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\CalibrationWindow.g.cs
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\MergeWindow.g.cs
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\App.g.cs
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.cache
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample_MarkupCompile.lref
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\MainWindow.baml
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.g.resources
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.Properties.Resources.resources
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csproj.GenerateResource.Cache
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.csproj.CoreCompileInputs.cache
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.exe
+C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\GOTSDKSample.pdb

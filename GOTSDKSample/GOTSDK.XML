@@ -1,0 +1,1821 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GOTSDK</name>
+    </assembly>
+    <members>
+        <member name="T:GOTSDK.GOTAddress">
+            <summary>
+            Represents a radio address for a GOT-unit.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.GOTAddress.Value">
+            <summary>
+            The underlying integer value.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.GOTAddress.#ctor(System.Int32)">
+            <summary>
+            Create a new GOTAddress instance.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.GOTAddress.IsValid">
+            <summary>
+            True if the current value is within valid range
+            </summary>
+        </member>
+        <member name="M:GOTSDK.GOTAddress.CompareTo(GOTSDK.GOTAddress)">
+            <summary>
+            Compare GOTAddress by their addresses
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.Master2XTypes.MasterFeature.UploadSound">
+            <summary>
+            Sound data upload over radio to GT-XControl
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.Master2XTypes.MasterFeature.SetupParametersCalculation">
+            <summary>
+            Use master setup values for calculating optimal setup parameters
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.Master2XTypes.MasterFeature.TransmitterPriority">
+            <summary>
+            Dynamic priority of measurement interval for transmitters
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.Master2XTypes.MasterFeature.ReceiverPriority">
+            <summary>
+            Dynamic selection of which receivers to use for measuring a given transmitter
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.Master2XTypes.MasterFeature.UnitWhiteListing">
+            <summary>
+            Set an explicit list of units to be enabled
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.Master2XTypes.IMaster2XDataHandler">
+            <summary>
+            Event handler for data specific to Master2X
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.Master2XTypes.MeasuredDistanceModifierCallback">
+            <summary>
+            Callback signature used for being able to modify measured distances before the actual Measurement result is created. 
+            Remark: This has nothing to do with how the Master measures. The method is invoked on the "raw" distances received from Master.
+            </summary>
+            <param name="receiverAddress">The receiver address</param>
+            <param name="transmitterAddress">The transmitter address</param>
+            <param name="measuredDistanceMM">The raw distance received from Master</param>
+            <param name="masterSetupMeterSec">The current sound speed (meter/sec) set in Master.</param>
+            <returns>The modified distance in mm</returns>
+        </member>
+        <member name="M:GOTSDK.Master.Master2XTypes.Whitelist.AddressToBytes(GOTSDK.GOTAddress[])">
+            <summary>
+            Convert int to ushort low and byte high address.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:GOTSDK.Master.Master2XFirmwareUpdate.Progress">
+            <summary>
+            Progress in interval [0...1]
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerString">
+            <summary>
+            Event handler for a string.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerTransmitter">
+            <summary>
+            Event handler for a transmitter.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerReceiver">
+            <summary>
+            Event handler for a receiver.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerMasterInfo">
+            <summary>
+            Event handler for receiving master info.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerMasterStatus">
+            <summary>
+            Event handler for receiving master status.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.EventHandlerUnknownUnit">
+            <summary>
+            Event handler for connecting an "unknown" unit (something not classified as transmitter or receiver).
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.IMaster">
+            <summary>
+            Common interface for Master1X and Master2X.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnDebugMessageReceived">
+            <summary>
+            Called when a debug message has been received
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnNewTransmitterConnected">
+            <summary>
+            Called when a new transmitter is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnNewReceiverConnected">
+            <summary>
+            Called when a new receiver is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnMasterStatusChanged">
+            <summary>
+            Called when master status has been changed.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnMeasurementReceived">
+            <summary>
+            Called when a new measurement has been received.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnMasterInfoReceived">
+            <summary>
+            Called when master info has been received. Usually triggered by a call to RequestMasterInfo().
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.IMaster.OnNewUnknownUnitConnected">
+            <summary>
+            Called when a new "unknown" unit is connected.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.IMaster.Status">
+            <summary>
+            Get the current status of the master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.IMaster.IsDebugOutputEnabled">
+            <summary>
+            Enable (additional) debug output for master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.IMaster.CurrentPortName">
+            <summary>
+            The COM port number used by this connection.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.IMaster.CurrentMeasureIntervalMS">
+            <summary>
+            The current measure interval for ultra sound.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.IMaster.CurrentFirmwareVersion">
+            <summary>
+            The firmware version of this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.BeginConnect(System.String)">
+            <summary>
+            Start connecting to the master. Can return false immediately if the master is not connected. Will otherwise connect async and raise OnMasterStatusChanged event.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.RequestMasterInfo">
+            <summary>
+            Request master info (serial, firmware version). Raises OnMasterInfoReceived.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.RequestSetup">
+            <summary>
+            Request current master setup parameters.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.RequestRestart">
+            <summary>
+            Request a restart of this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.RequestUnits">
+            <summary>
+            Request Master to query for connected units. This will force all units to show up in the OnNewXXXConnected events, where XXX is Transmitter/Receiver/Unknown.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.GetTransmitters">
+            <summary>
+            Get all currently connected transmitters. The result is a cached version of all the OnNewTransmitterConnected events so far.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.GetReceivers">
+            <summary>
+            Get all currently connected receivers. The result is a cached version of all the OnNewReceiverConnected events so far.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.SetSetup(System.Byte,System.Double)">
+            <summary>
+            Set basic setup parameters for this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.SetTransmitterState(GOTSDK.GOTAddress,GOTSDK.Transmitter.TransmitterState,GOTSDK.Transmitter.UltraSonicLevel)">
+            <summary>
+            Set basic parameters for a connected transmitter.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.IMaster.Close">
+            <summary>
+            Close connection to master.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.MasterStatus">
+            <summary>
+            Status of connection to Master
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.MasterStatus.Offline">
+            <summary>
+            Not connected.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.MasterStatus.Connecting">
+            <summary>
+            Trying to connect.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Master.MasterStatus.Connected">
+            <summary>
+            Successfully connected.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.Master1X">
+            <summary>
+            Represents a connection to a GOT Master1X
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnDebugMessageReceived">
+            <summary>
+            Called when a debug message has been received
+            </summary>		
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnNewTransmitterConnected">
+            <summary>
+            Called when a new transmitter is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnNewReceiverConnected">
+            <summary>
+            Called when a new receiver is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnMasterInfoReceived">
+            <summary>
+            Called when master info has been changed.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnMasterStatusChanged">
+            <summary>
+            Called when master status has been changed.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnMeasurementReceived">
+            <summary>
+            Called when a new measurement has been received.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master1X.OnNewUnknownUnitConnected">
+            <summary>
+            Called when a new "unknown" unit is connected.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.Status">
+            <summary>
+            Get the current status of the master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.IsDebugOutputEnabled">
+            <summary>
+            Enable (additional) debug output for master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.CurrentPortName">
+            <summary>
+            The COM port number used by this connection.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.CurrentMeasureIntervalMS">
+            <summary>
+            The current measure interval for ultra sound.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.CurrentFirmwareVersion">
+            <summary>
+            The firmware version of this master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master1X.IsConnected">
+            <summary>
+            True if this instance is currently connected to a master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.#ctor(System.Threading.SynchronizationContext,System.Byte,System.Double)">
+            <summary>
+            Create a new Master1X instance with default parameters. 
+            </summary>
+            <param name="context">An (optional) SynchronizationContext, which all events will be invoked on.</param>
+            <param name="measureInterval">The measurement interval in ms.</param>
+            <param name="temperature">The current temperature in degrees</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.BeginConnect(System.String)">
+            <summary>
+            Start connecting to the master. Can return false immediately if the master is not connected. Will otherwise connect async and raise OnMasterStatusChanged event.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.RequestUnits">
+            <summary>
+            Request current connected units. This method does nothing in case of Master1X. They automatically shows up.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.RequestMasterInfo">
+            <summary>
+            Request master info (serial, firmware version). Raises OnMasterInfoReceived.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.RequestSetup">
+            <summary>
+            Does nothing for this implementation. Only relevant for Master2X.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.RequestRestart">
+            <summary>
+            Request a restart of this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.Close">
+            <summary>
+            Close connection to master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.SetTransmitterState(GOTSDK.GOTAddress,GOTSDK.Transmitter.TransmitterState,GOTSDK.Transmitter.UltraSonicLevel)">
+            <summary>
+            Set basic parameters for a connected transmitter.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.SetSetup(System.Byte,System.Double)">
+            <summary>
+            Set basic setup parameters for this master. Remark: radioLevel has no effect here.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.GetTransmitters">
+            <summary>
+            Get all currently connected transmitters. The result is a cached version of all the OnNewTransmitterConnected events so far.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master1X.GetReceivers">
+            <summary>
+            Get all currently connected receivers. The result is a cached version of all the OnNewReceiverConnected events so far.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.Master2X">
+            <summary>
+            Represents a connection to a GOT Master1X
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnDebugMessageReceived">
+            <summary>
+            Called when a debug message is received. Can be controlled via the IsDebugOutputEnabled property.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnMeasurementReceived">
+            <summary>
+            Called when a new measurement is ready.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnMasterStatusChanged">
+            <summary>
+            Called when connection status is changed.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnMasterInfoReceived">
+            <summary>
+            Called when master info is received (as a result of calling RequestMasterInfo()). Contains data on serial number and firmware version.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnNewTransmitterConnected">
+            <summary>
+            Called when a new transmitter is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnNewReceiverConnected">
+            <summary>
+            Called when a new receiver is connected.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnNewUnknownUnitConnected">
+            <summary>
+            Called when a new "unknown" unit is connected. This is typically units with radio, but no positioning.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.DistanceModifierCallback">
+            <summary>
+            An optional callback function for modifying the distances received from Master. Set to null if not used (default).
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Master.Master2X.OnFirmwareDataReceived">
+            <summary>
+            Used for events specific to firmware updates
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.IsDebugOutputEnabled">
+            <summary>
+            Enable (additional) debug output for this master.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.CurrentPortName">
+            <summary>
+            The COM port number used by this connection.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.CurrentFirmwareVersion">
+            <summary>
+            The firmware version of this master. 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.Status">
+            <summary>
+            The current status of this connection. This value mirrors the value sent in the OnMasterStatusChanged event.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Master.Master2X.CurrentMeasureIntervalMS">
+            <summary>
+            The current measure interval for ultra sound.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.#ctor(System.Threading.SynchronizationContext)">
+            <summary>
+            Construct a new Master2X connection.
+            </summary>
+            <param name="syncContext">An (optional) SynchronizationContext, which all events will be invoked on.</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.InitializeReceiverPriority(System.Int32,System.Int32)">
+            <summary>
+            Start the dynamic receiver selection system. The idea is to only use a subset of receivers, 
+            which will be divided into A) receivers for actual measuring and B) receivers for "scanning" their current position.
+            </summary>
+            <param name="maxReceiversForActualMeasurement">The maximum number of receivers to use in each measurement for measuring the transmitter. 
+            The difference between this number and the maximum satellite count in Setup(), will denote how many satellites are used for scanning.</param>
+            <param name="frameSkips">How often to update the receiver list for each transmitter. A value of two means to send a new list when every third (skip two) measurement is received.
+            Decreasing this value will result in a more "responsive" system, bu will also result in more traffic to the Master.</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetAllConnectedUnits">
+            <summary>
+            Get a list of current connected units. The result is essentially a cached version of all the OnNewTransmitterConnected/OnNewReceiverConnected calls.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestWhitelist(System.Int32)">
+            <summary>
+            Request Master to respond with current whitelist setup. 
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestUnits">
+            <summary>
+            Request a list of current connected units directly from the Master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.IsReceiverType(GOTSDK.Master.Master2XTypes.TPCLINK_UNIT_TYPE)">
+            <summary>
+            Returns true if the given unit type is a receiver (also known as a satellite)
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.IsTransmitterType(GOTSDK.Master.Master2XTypes.TPCLINK_UNIT_TYPE)">
+            <summary>
+            Returns true if the given unit type is a transmitter
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.IsTypeWithSoundModule(GOTSDK.GOTAddress,GOTSDK.Master.Master2XTypes.TPCLINK_UNIT_TYPE)">
+            <summary>
+            Returns true if the given unit type has a sound module
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetTransmitterFromUnitConfig(GOTSDK.Master.Master2XTypes.UnitConfigInf)">
+            <summary>
+            Gets the transmitter from unit configuration.
+            </summary>
+            <param name="uc">The uc.</param>
+            <returns>Transmitter.</returns>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.CheckFirmwareVersion(System.Int32,System.Int32)">
+            <summary>
+            Check if current master firmware version is at least this minor and build version. Format: X.Y.Z (X: Major, Y: Minor, Z: Build)
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.Setup(System.Byte,System.UInt16,System.Byte,System.Byte,GOTSDK.Master.Master2XTypes.TPCLINK_ULTRASONIC_LEVEL,GOTSDK.Master.Master2XTypes.TPCLINK_RADIO_LEVEL,System.Boolean,GOTSDK.Master.Master2XTypes.TPCLINK_RadioChannel,GOTSDK.Master.Master2XTypes.TPCLINK_FirmwareSelectionFlags,System.Boolean,System.Byte,System.Boolean,System.Boolean)">
+            <summary>
+            Set setup parameters in Master. Unless you know what you are doing, you should stick with the default parameters.
+            </summary>
+            <param name="measureInterval">The measurement interval in ms (valid range is 70-200)</param>
+            <param name="speedOfSoundInMeters">Speed of sound in meters for the current temperature</param>
+            <param name="maxReceiverCount">The maximum number of receivers connected.</param>
+            <param name="maxRemoteControllerCount">Maximum number of (handheld) remote controllers.</param>
+            <param name="txUltrasonicLevel">The ultra sound level.</param>
+            <param name="radioLevel">The sending power of the radio.</param>
+            <param name="isLoconetMaster">Enable the LocoNet connector on Master.</param>
+            <param name="channel">The radio channel</param>
+            <param name="firmwareSelection">The firmware functionality to enable</param>
+            <param name="useWhiteListing">True if the Master should use it's internal whitelist, instead of automatically enabling all units</param>
+            <param name="maxDataCount">For DCC: The maximum number of bytes for a transmitter for each frame (Remark: One DCC message uses four bytes)</param>
+            <param name="enableSpeedValidationFromHandheld">For handheld remotes only: Each speed command and send to PC for validation, instead of directly to the track.</param>
+            <param name="calculateTimingOnly">Set to this to only calculate the resulting MaxAcknowledgeCount and MaxMeasureDistance. No actual parameters will be applied in Master.</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetSpeedOfSoundInMeters(System.Double)">
+            <summary>
+            Get speed of sound in meters/sec for a given air temperature
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetTemperatureFromSoundSpeed(System.Double)">
+            <summary>
+            Get temperature (in degrees) for a given sound speed in meters/sec
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestRestart(System.Boolean,System.Boolean)">
+            <summary>
+            Request master restart
+            </summary>
+            <param name="restartSW">Restart SW</param>
+            <param name="restartRadio">Restart Radio</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestSetup">
+            <summary>
+            Request current master setup parameters.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestMasterInfo">
+            <summary>
+            Request master info (serial, firmware version). Raises OnMasterInfoReceived.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.Close">
+            <summary>
+            Close connection to master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.BeginConnect(System.String)">
+            <summary>
+            Start connecting to the master. Can return false immediately if the master is not connected. Will otherwise connect async and raise OnMasterStatusChanged event.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.RequestRestart">
+            <summary>
+            Request a restart of this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.SetTransmitterState(GOTSDK.GOTAddress,GOTSDK.Transmitter.TransmitterState,GOTSDK.Transmitter.UltraSonicLevel)">
+            <summary>
+            Set the state of a connected transmitter.
+            </summary>
+            <param name="address">The GOTAddress of the transmitter</param>
+            <param name="state">The new transmitter state</param>
+            <param name="level">The new transmitter ultrasound level.</param>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.SetSetup(System.Byte,System.Double)">
+            <summary>
+            Set basic setup parameters for this master.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetTransmitters">
+            <summary>
+            Get all currently connected transmitters. The result is a cached version of all the OnNewTransmitterConnected events so far.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.Master2X.GetReceivers">
+            <summary>
+            Get all currently connected receivers. The result is a cached version of all the OnNewReceiverConnected events so far.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Master.MasterUtils">
+            <summary>
+            Various misc utils for working with Master1X and Master2X.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.TryConvertBytesToStruct``1(System.Byte[],``0@)">
+            <summary>
+            Try to populate a struct based on a byte array.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.ConvertStructToBytes``1(``0)">
+            <summary>
+            Convert a struct to bytes
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.GetBits(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Helper for retriving a bitmask from a value
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.SetBits(System.Byte@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Helper for appending a bitmask to a value
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.SetBits(System.UInt16@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Helper for appending a bitmask to a value
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.GetCombinationsOfLengthK``1(System.Collections.Generic.IEnumerable{``0},System.Int32)">
+            <summary>
+            Generate all possible combinations of length K, from a given sequence. Order does not matter in a combination (otherwise it is a permutation).
+            Remark: This method is exponential, so watch the size of K!
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.GetPermutationsOfLengthK``1(System.Collections.Generic.IList{``0},System.Int32)">
+            <summary>
+            Generate all possible permutations of length K
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.SafeSend(System.Threading.SynchronizationContext,System.Threading.SendOrPostCallback,System.Object)">
+            <summary>
+            Helper for "safely" invoking a callback on a syncContext. Catches all InvalidAsynchronousStateException, which happens whenever the syncContext is not valid anymore.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.GetPortForMaster1X">
+            <summary>
+            Get the COM port number for a connected Master1X (or null)
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.MasterUtils.GetPortForMaster2X">
+            <summary>
+            Get the COM port number for a connected Master2X (or null)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GOTSDK.Master.ReceiverPrioritizer">
+            <summary>
+            Handles dynamic priority of receivers. The idea is to only have a subset of receivers active at any given time, allowing for a tighter measurement interval. 
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Master.ReceiverPrioritizer.GetReceiversForMeasurement(GOTSDK.GOTAddress,System.Int32)">
+            <summary>
+            Get the receivers to use for measuring a given transmitter.
+            </summary>
+            <param name="transmitter">The target transmitter.</param>
+            <param name="maxReceiverCount">The maximum number of receivers to use.</param>
+            <returns>A list of receivers to use.</returns>
+        </member>
+        <member name="T:GOTSDK.MeasurementHandler">
+            <summary>
+            Delegate for Measurement.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Measurement">
+            <summary>
+            Represents a measurement.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.RealTimeStampMS">
+            <summary>
+            Used for keeping track of when measurement was received by PC.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.TxAddress">
+            <summary>
+            GOT address of transmitter.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.RSSI">
+            <summary>
+            [-dBm] Radio Signal Strength Indicator 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.RadioQuality">
+            <summary>
+            Radio quality [0..100%]
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.RadioLostCount">
+            <summary>
+            0..14, 255= Offline
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.BatteryVoltage">
+            <summary>
+            Current battery voltage in [100mV] units
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.RxMeasurements">
+            <summary>
+            Data for the individual measurements to each receiver.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.MaxLevel">
+            <summary>
+            The maximum level for Rx.Level - this value is normally 255 for Master2X and 1000 for Master1X.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.#ctor(GOTSDK.GOTAddress,System.Byte,System.Byte,System.Byte,System.Byte,GOTSDK.Measurement.Rx[],System.Int64,System.Int32)">
+            <summary>
+            Create a new measurement.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.GetMeasurementAgeMS(GOTSDK.Measurement)">
+            <summary>
+            Get the number of milliseconds elapsed since this measurement was received by PC.
+            </summary>
+            <param name="measurement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GOTSDK.Measurement.TryCreateFromString(System.String,GOTSDK.Measurement@)">
+            <summary>
+            Try to create a Measurement instance from its ToString() representation. Very convenient when working with logfiles.
+            </summary>
+            <param name="input">The input string. Expected to be the output from Measurement.ToString().</param>
+            <param name="result">The parsed result if the operation succeeded, otherwise a default value.</param>
+            <returns>True if parsing succeeded.</returns>
+        </member>
+        <member name="M:GOTSDK.Measurement.#ctor(GOTSDK.Measurement)">
+            <summary>
+            Copy constructor
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.GetLevelForReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Get level for a specific receiver.
+            </summary>
+            <param name="receiverAddress">Address of the receiver</param>
+            <returns>The level in 0...255 interval</returns>
+        </member>
+        <member name="M:GOTSDK.Measurement.GetDistanceForReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Get distance for a specific receiver.
+            </summary>
+            <param name="receiverAddress">Address of the receiver</param>
+            <returns>The measured distance in millimeters</returns>
+        </member>
+        <member name="M:GOTSDK.Measurement.GetMeasurementForReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Get the Rx measurement for a specific receiver.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.TryGetMeasurementForReceiver(GOTSDK.GOTAddress,GOTSDK.Measurement.Rx@)">
+            <summary>
+            Get the Rx measurement for a specific receiver.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.ToString">
+            <summary>
+            Get a string representation of this object.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Measurement.Rx">
+            <summary>
+            Represents the measurement data for a receiver.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.Rx.Address">
+            <summary>
+            GOT address of the receiver
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.Rx.RSSI">
+            <summary>
+            Radio Signal Strength Indicator (0 == No reply from radio)
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.Rx.Level">
+            <summary>
+            0..255
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Measurement.Rx.Distance">
+            <summary>
+            The measured distance in MM or 0 == Ultrasonic timeout
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.#ctor(GOTSDK.GOTAddress,System.Int32,System.Int32,System.Double)">
+            <summary>
+            Construct a new Rx
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.ToString">
+            <summary>
+            Get a string representation of this object.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.op_Equality(GOTSDK.Measurement.Rx,GOTSDK.Measurement.Rx)">
+            <summary>
+            Equals operator
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.op_Inequality(GOTSDK.Measurement.Rx,GOTSDK.Measurement.Rx)">
+            <summary>
+            Not equal operator
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.Equals(System.Object)">
+            <summary>
+            Equals override
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Measurement.Rx.GetHashCode">
+            <summary>
+            Get hash code
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.AbsolutePositionSolver">
+            <summary>
+            A solver which takes absolute positions and relative positions and turns them into absolute positions. 
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.AddAbsolutePosition(GOTSDK.Position.AbsolutePositionSolver.Input)">
+            <summary>
+            Add a new absolute position.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.AddRelativePosition(System.Collections.Generic.IEnumerable{GOTSDK.Position.AbsolutePositionSolver.Input})">
+            <summary>
+            Add a "set" of relative positions. Remark: Input length must be at least 3 items.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.TrySolve">
+            <summary>
+            Try to turn the relative positions into absolute positions. 
+            </summary>
+            <returns>True if the solving was possible.</returns>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.GetAddressesWithSolvedPositions">
+            <summary>
+            Get all addresses with a (now) absolute position.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.GetAllAddresses">
+            <summary>
+            Get all addresses currently in the solver.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.GetSolvedPosition(GOTSDK.GOTAddress)">
+            <summary>
+            Get a solved (absolute) position for a given address.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.AbsolutePositionSolver.Input">
+            <summary>
+            Represents an input combination of address/position
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.AbsolutePositionSolver.Input.Address">
+            <summary>
+            Target address
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.AbsolutePositionSolver.Input.Position">
+            <summary>
+            Target position
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.AbsolutePositionSolver.Input.#ctor(GOTSDK.GOTAddress,System.Windows.Media.Media3D.Point3D)">
+            <summary>
+            Constructs a new Input
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.CalculatedPosition">
+            <summary>
+            Represents an actual calculated (X,Y,Z) position, including the source measurement and calibration data.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.Position">
+            <summary>
+            The calculated position.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.Measurement">
+            <summary>
+            The source measurement.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.TxAddress">
+            <summary>
+            The transmitter address for this position.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.ReceiverAddresses">
+            <summary>
+            The addresses on the receivers used to calculate this position. 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.Scenario">
+            <summary>
+            The scenario used for calculating this position.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.TimeStamp">
+            <summary>
+            The time this object was created.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.Tag">
+            <summary>
+            A user-defined object which can be used for various things.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalculatedPosition.GetAllResults">
+            <summary>
+            Get all calculated positions in all scenarios. The first item returned is the "best" position. Remark: Multiple items only exist in the cases where it was
+            possible to calculate a valid position in more than one scenario. This method is intended to be used for merging multiple scenarios (or debugging purposes).
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.CalculatedPosition.ScenarioResult">
+            <summary>
+            Represents the result of the calculations done in a Scenario
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.ScenarioResult.Scenario">
+            <summary>
+            The Scenario used.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.ScenarioResult.Position">
+            <summary>
+            The calculation position.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.ScenarioResult.ReceiversUsed">
+            <summary>
+            The addresses of the receivers used in the calculations. Usually a subset of the receivers in the scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalculatedPosition.ScenarioResult.ReceiverLevelScore">
+            <summary>
+            A calculated "score" used for comparing quality of scenarios.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalculatedPosition.ScenarioResult.#ctor(GOTSDK.Position.IScenario,System.Windows.Media.Media3D.Point3D,System.Collections.Generic.IList{GOTSDK.GOTAddress},GOTSDK.Measurement)">
+            <summary>
+            Construct a new ScenarioResult
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.CalibratorTriangle">
+            <summary>
+            Represents a "calibrator triangle" for calibrating a 3D Scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalibratorTriangle.SizeInMM">
+            <summary>
+            The size in MM for any side in the triangle.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalibratorTriangle.HistorySize">
+            <summary>
+            The maximum number of measurements to keep. 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalibratorTriangle.MinimumLevel">
+            <summary>
+            The minimum acceptable level for a measurement (15 by default). Only used for displaying status of a receiver.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.CalibratorTriangle.TransmitterAddresses">
+            <summary>
+            The transmitter addresses used by this triangle.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.ClearData">
+            <summary>
+            Clear all data received so far.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.SetTargetReceivers(System.Collections.Generic.IEnumerable{GOTSDK.GOTAddress})">
+            <summary>
+            Set the relevant receivers. This method is optional. Otherwise measurements from all receivers will be considered.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.AddMeasurement(GOTSDK.Measurement)">
+            <summary>
+            Add a new received measurement.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.IsCalibrationFinished(System.Double@)">
+            <summary>
+            Check if the calibration has enough valid data for the calibration to be finished.
+            </summary>
+            <param name="progress">The current progress in interval [0...1]. Remark: The is calculated as the factor between the number of good measurements received for the
+            worst receiver and the total number of measurements received. This means progress can move backwards, in case of measurements getting worse!</param>
+            <returns>True if the calibration is done.</returns>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.CreateScenario">
+            <summary>
+            Call this method after IsCalibrationFinished(...) has returned true, in order to retrieve the scenario just calibrated.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.IsCalibratorTriangleAddress(GOTSDK.GOTAddress)">
+            <summary>
+            Check if a given GOT address is part of an calibrator triangle
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.CalibratorTriangle.TryFindCalibratorTriangle(System.Collections.Generic.IEnumerable{GOTSDK.GOTAddress},GOTSDK.Position.CalibratorTriangle@)">
+            <summary>
+            Try to find a calibrator triangle based on the addresses of the currently connected units.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Filters.IMeasurementFilter">
+            <summary>
+            Interface for a measurement filter
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.IMeasurementFilter.AddMeasurement(GOTSDK.Measurement)">
+            <summary>
+            Add a new measurement to the filter. Usually a filter will use this to keep a history of measurements.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.IMeasurementFilter.ValidateMeasurement(GOTSDK.Measurement)">
+            <summary>
+            Validate a measurement. Returns false if the measurement should be filtered out and thus not used in position calculation.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.IMeasurementFilter.ValidateReceiver(GOTSDK.Measurement,GOTSDK.Measurement.Rx)">
+            <summary>
+            Validate the measurement for a specific receiver. The idea behind this is to not reject the entire 
+            measurement (using the ValidateMeasurement(...) method), but instead just filter the individual receivers.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.IMeasurementFilter.Reset">
+            <summary>
+            Reset the filter. Usually a filter will clear its history of measurements.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Filters.MaxDeltaMovementFilter">
+            <summary>
+            A simple filter for handling "jumpy" measurements, which is detected from delta distance between two consecutive measurements.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.MaxDeltaMovementFilter.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Construct a new MaxDeltaMovementFilter
+            </summary>
+            <param name="maxMMPerSecond">The maximum allowed mm/sec movement.</param>
+            <param name="maxConsecutiveSkips">The maximum allowed consecutive skips.</param>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.MaxDeltaMovementFilter.AddMeasurement(GOTSDK.Measurement)">
+            <summary>
+            Add a new measurement to the filter. All measurements should be passed here.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.MaxDeltaMovementFilter.ValidateReceiver(GOTSDK.Measurement,GOTSDK.Measurement.Rx)">
+            <summary>
+            Validate a specific receiver against the filter. Returns true if the measurement is okay.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.MaxDeltaMovementFilter.ValidateMeasurement(GOTSDK.Measurement)">
+            <summary>
+            This MaxDeltaMovementFilter only deals with receiver measurements (ValidateReceiver), so this method always returns true.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Filters.MaxDeltaMovementFilter.Reset">
+            <summary>
+            Reset internal state of this filter.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Calibration3DPosition">
+            <summary>
+            Represents a position in a calibrator-triangle
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Calibration3DPosition.Pos00">
+            <summary>
+            The {0,0} position (bottom left)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Calibration3DPosition.PosX0">
+            <summary>
+            The {X,0} position (bottom right)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Calibration3DPosition.PosXY">
+            <summary>
+            The {X,Y} position (top center)
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.ICalibration3D">
+            <summary>
+            Represents the members used for making a "3D" calibration of a Scenario, using the calibrator-triangle approach.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.ICalibration3D.TriangleSize00toX0">
+            <summary>
+            Distance from {0,0} to {X,0} in millimeters
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.ICalibration3D.TriangleSizeX0toXY">
+            <summary>
+            Distance from {X,0} to {X,Y} in millimeters
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.ICalibration3D.TriangleSizeXYto00">
+            <summary>
+            Distance from {X,Y} to {0,0} in millimeters
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.ICalibration3D.IsValid">
+            <summary>
+            True if this scenario contains the necessary data in order to be valid.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.ICalibration3D.GetCalibrationDistance(GOTSDK.GOTAddress,GOTSDK.Position.Calibration3DPosition)">
+            <summary>
+            Get the distance from a given receiver to a position in the calibration-triangle
+            </summary>
+            <param name="receiver">The receiver address</param>
+            <param name="position">The triangle position</param>
+            <returns>The distance in millimeters</returns>
+        </member>
+        <member name="M:GOTSDK.Position.ICalibration3D.SetCalibrationDistance(GOTSDK.GOTAddress,GOTSDK.Position.Calibration3DPosition,System.Double)">
+            <summary>
+            Set the distance from a given receiver to a position in the calibration-triangle
+            </summary>
+            <param name="receiver">The receiver address</param>
+            <param name="position">The triangle position</param>
+            <param name="distance">The distance in millimeters</param>
+        </member>
+        <member name="T:GOTSDK.Position.IScenario">
+            <summary>
+            Common interface for all scenario types.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.Name">
+            <summary>
+            The name for this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.DisplayColor">
+            <summary>
+            The display color for this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.IsMainScenario">
+            <summary>
+            Set this to main scenario, which means it will be origo in a merged coordinate system
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.ScenarioTransform">
+            <summary>
+            Get the transform of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.ScenarioRotationAxis">
+            <summary>
+            The axis to rotate around (defaults to {0, 0, 1})
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.ScenarioTranslation">
+            <summary>
+            The merge translation vector
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.ScenarioRotationAngle">
+            <summary>
+            The angle in degrees to rotate around ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.Receivers">
+            <summary>
+            The receivers used in this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.IScenario.ScenarioType">
+            <summary>
+            The type of this scenario.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.AddReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Add a new receiver to this scenario
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.RemoveReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Remove a receiver from this scenario
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.TryCalculatePosition(GOTSDK.Measurement,System.Windows.Media.Media3D.Point3D@,GOTSDK.GOTAddress[]@,GOTSDK.Position.Filters.IMeasurementFilter[])">
+            <summary>
+            Try calculate a position from a given measurement.
+            </summary>
+            <param name="measurement">The measurement</param>
+            <param name="position">The calculate position (if the method returns true, otherwise just a default value)</param>
+            <param name="receiverAddresses">The receivers used to do the calculation.</param>
+            <param name="filters">Optional filters to apply to the raw measurements.</param>
+            <returns>True if the operation was successful</returns>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.GetReceiverPosition(GOTSDK.GOTAddress)">
+            <summary>
+            Get the calculated X,Y,Z location of a receiver in this scenario.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.GetTransformMatrix">
+            <summary>
+            Get the transform matrix of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.GetInverseTransformMatrix">
+            <summary>
+            Get the inverse transform matrix of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.IScenario.SetToMainScenario">
+            <summary>
+            Make this scenario a main scenario and reset ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis to their defaults.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.PositionCalculator">
+            <summary>
+            Helper methods for calculating a position.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.PositionCalculator.TryCalculatePosition(GOTSDK.Measurement,GOTSDK.Position.IScenario,GOTSDK.Position.CalculatedPosition@,GOTSDK.Position.Filters.IMeasurementFilter[])">
+            <summary>
+            Try to calculate a position from a measurement and a (calibrated) scenario. 
+            </summary>
+            <param name="measurement">The measurement.</param>
+            <param name="scenario">A calibrated scenario.</param>
+            <param name="position">The resulting position if the calculation succeeds. Otherwise null.</param>
+            <param name="filters">Optional filters to apply to the raw measurements.</param>
+            <returns>True if the calculation succeeds.</returns>
+        </member>
+        <member name="M:GOTSDK.Position.PositionCalculator.TryCalculatePosition(GOTSDK.Measurement,System.Collections.Generic.IList{GOTSDK.Position.IScenario},GOTSDK.Position.CalculatedPosition@,GOTSDK.Position.Filters.IMeasurementFilter[])">
+            <summary>
+            Try to calculate a position from multiple merged scenarios. It is assumed that one of the scenario has "IsMainScenario" set to true and the
+            remaining scenarios has their "ScenarioTranslation", "ScenarioRotationAngle" and "ScenarioRotationAxis" properties set accordingly.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.PositionCalculator.TryCalculateRotationZ(GOTSDK.Position.CalculatedPosition,GOTSDK.Position.CalculatedPosition,System.Windows.Vector@,GOTSDK.Position.Filters.IMeasurementFilter[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Given two calculated positions for two different transmitters, try to calculate a direction vector pointing from A to B. The assumption is that the two transmitters are located
+            very close to each other, but are facing in different directions and the measurements has been recorded directly after each other. 
+            The calculation is carried out by means of the measurement level.
+            </summary>
+            <param name="A">The first calculated position.</param>
+            <param name="B">The next calculated position.</param>
+            <param name="result">The resulting unit vector pointing from A to towards B.</param>
+            <param name="filters">Any (optional) filters to apply to measurements.</param>
+            <param name="minimumDistanceMM">The minimum allowed distance to a receiver, in order to be considered.</param>
+            <param name="minimumAngleDegrees">The minimum allowed angle between receiver and transmitter. The idea is to skip receivers (almost) directly above the transmitters</param>
+            <param name="minimumDeltaLevel">The minimum delta level measured to a receiver.</param>
+            <returns>True if the calculation succeeded.</returns>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ReceiversDisplay">
+            <summary>
+            Get a display-friendly string of the receivers in this configuration.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.Receivers">
+            <summary>
+            Enumerate all receivers in the scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.Name">
+            <summary>
+            The name of this scenario. Can be used for display purposes.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.IsMainScenario">
+            <summary>
+            Set this to main scenario, which means it will be origo in a merged coordinate system
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.DisplayColor">
+            <summary>
+            The display color for this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioTransform">
+            <summary>
+            Get the transform of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioRotationAxis">
+            <summary>
+            The axis to rotate around (defaults to {0, 0, 1})
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioRotationAngle">
+            <summary>
+            The angle in degrees to rotate around ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioTranslation">
+            <summary>
+            The merge translation vector
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.SetToMainScenario">
+            <summary>
+            Make this scenario a main scenario and reset ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis to their defaults.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.GetTransformMatrix">
+            <summary>
+            Get the transform matrix of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.GetInverseTransformMatrix">
+            <summary>
+            Get the inverse transform matrix of this scenario. This is based on ScenarioTranslation, ScenarioRotationAngle and ScenarioRotationAxis.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioTranslationDisplay">
+            <summary>
+            Get a display-friendly string of ScenarioTranslation
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioRotationAngleDisplay">
+            <summary>
+            Get a display-friendly string of ScenarioRotationAngle
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario.ScenarioRotationAxisDisplay">
+            <summary>
+            Get a display-friendly string of ScenarioRotationAxis
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.GetMinimumReceiverCount(GOTSDK.Position.Scenario.Type)">
+            <summary>
+            Get the minimum required number of receivers for a scenario type.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.GetMaximumReceiverCount(GOTSDK.Position.Scenario.Type)">
+            <summary>
+            Get the maximum supported number of receivers for a scenario type.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.OnPropertyChanged(System.String)">
+            <summary>
+            Raise PropertyChangedEventArgs
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.OnPropertyChanged(System.String,System.String)">
+            <summary>
+            Raise PropertyChangedEventArgs
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario.OnPropertyChanged(System.String,System.String,System.String)">
+            <summary>
+            Raise PropertyChangedEventArgs
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Scenario25D">
+            <summary>
+            This is essentially a 3D scenario where all receivers are located at the same height. It will only measure in 2D (X,Y).
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario25D.HeightMM">
+            <summary>
+            The height in millimeters from the calibration plane to the position of the receivers. It is assumed that all receivers are located at the same height.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Scenario3D">
+            <summary>
+            Represents a "3D" calibration of a set of receivers. 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ScenarioType">
+            <summary>
+            The type of this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MinimumSizeForCalibrationTriangleMM">
+            <summary>
+            The minimum distance allowed in the calibration triangle. Default 400 mm.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MaximumSizeForCalibrationTriangleMM">
+            <summary>
+            The maximum distance allowed in the calibration triangle. Default 2000 mm.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MinimumAngleInCalibrationTriangleDegrees">
+            <summary>
+            All angles inside the calibration triangle must be at least this number of degrees. Default 25.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MinimumSizeForReceiverTriangleMM">
+            <summary>
+            Receivers must be at least this distance apart. Default 300.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MaximumSizeForReceiverTriangleMM">
+            <summary>
+            Receivers must be at most this distance apart. Default 15000.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MinimumAngleForReceiverTriangleDegrees">
+            <summary>
+            Receivers forming a triangle: All angles inside must be at least this number of degrees. Default 20.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MaximumAngleForReceiverTriangleDegrees">
+            <summary>
+            Receivers forming a triangle: All angles inside must be at most this number of degrees. Default 150.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.MinimumTransmitterReceiverPlaneAngle">
+            <summary>
+            The minimum allowed angle in degrees, between a transmitter and the plane formed by three receivers conducting the measurement. Default 15.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.TriangleSize00toX0">
+            <summary>
+            Distance in MM from 0,0 to X,0 in the calibration triangle.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.TriangleSizeX0toXY">
+            <summary>
+            Distance in MM from X,0 to X,Y in the calibration triangle.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.TriangleSizeXYto00">
+            <summary>
+            Distance in MM from X,Y to 0,0 in the calibration triangle.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.Receivers">
+            <summary>
+            The receivers used in this scenario.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ReceiverConfigurations">
+            <summary>
+            The actual list of receiver triangles used for measurements.  
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.IgnoredConfigurations">
+            <summary>
+            A list of possible measurement triangles to ignore when doing a position calculation.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ReceiverDescription">
+            <summary>
+            Get a display string for the receivers in this scenario.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D._receiverConfigurations">
+            <summary>
+            The valid "measure triangles" in this scenario. The number of items is usually less than the maximum number of permutations. 
+            This list is updated each time UpdateConfigurations() is called
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D._receiverTransmitterDistance">
+            <summary>
+            For each receiver, store distances to the three corners in the calibration triangle.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.IsValid">
+            <summary>
+            True if this scenario is currently valid.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.#ctor">
+            <summary>
+            Create a new Scenario3D
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.RemoveReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Remove the given receiver from this scenario
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.AddReceiver(GOTSDK.GOTAddress)">
+            <summary>
+            Add a receiver to this scenario
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.GetCalibrationCornerPosition3D(GOTSDK.Position.Calibration3DPosition)">
+            <summary>
+            Get the X,Y,Z coordinate of a position in the coordinate system of this scenario. Z will always be 0.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.TryCalculatePosition(GOTSDK.Measurement,System.Windows.Media.Media3D.Point3D@,GOTSDK.GOTAddress[]@,GOTSDK.Position.Filters.IMeasurementFilter[])">
+            <summary>
+            Try calculate a position from a given measurement.
+            </summary>
+            <param name="measurement">The measurement</param>
+            <param name="position">The calculate position (if the method returns true, otherwise just a default value)</param>
+            <param name="receiverAddresses">The receivers used to do the calculation.</param>
+            <param name="filters">Optional filters to apply to the raw measurements.</param>
+            <returns>True if the operation was successful</returns>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.UpdateConfigurations">
+            <summary>
+            Try to build the internal data structures.
+            </summary>
+            <returns>The status of the scenario.</returns>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.GetReceiverPosition(GOTSDK.GOTAddress)">
+            <summary>
+            Get the calculated X,Y,Z location of a receiver in this scenario. Remark: Will return 0,0,0 in case the receiver is not a part of this scenario.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.SetCalibrationDistance(GOTSDK.GOTAddress,GOTSDK.Position.Calibration3DPosition,System.Double)">
+            <summary>
+            Set the distance between a receiver and one of the corners in the calibration triangle. 
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.GetCalibrationDistance(GOTSDK.GOTAddress,GOTSDK.Position.Calibration3DPosition)">
+            <summary>
+            Get the distance between a receiver and one of the corners in the calibration triangle. Returns 0 if the receiver is not part of this scenario.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Scenario3D.ScenarioStatus">
+            <summary>
+            The status/validity of the scenario.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.Ok">
+            <summary>
+            Everything is good.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.TooFewReceivers">
+            <summary>
+            A 3D scenario needs at least 3 receivers.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.MissingDistanceToReceiver">
+            <summary>
+            All distances from each corner in the calibration triangle to each receiver must be measured.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.CalibrationTriangleTooSmall">
+            <summary>
+            All sides in the calibration triangle must be at least 50 cm.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.CalibrationTriangleTooCrooked">
+            <summary>
+            All angles in the calibration triangle must be below 80 degrees.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.CalibrationTriangleImpossibleDimensions">
+            <summary>
+            The triangle is impossible to construct. E.g. one side being larger than the other two sides combined.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.CalibrationTriangleTooLarge">
+            <summary>
+            All sides in the calibration triangle must be at most 200 cm.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.ReceiverPositionInvalid">
+            <summary>
+            Failed to calculate the position of a receiver.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ScenarioStatus.NoValidConfigurations">
+            <summary>
+            No valid configurations available.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Scenario3D.ReceiverConfiguration">
+            <summary>
+            A configuration is the actual triangle of receivers doing a position calculation. A Scenario3D automatically builds up a list of possible configurations, based on the receiver positions in the scenario.
+            </summary>	
+        </member>
+        <member name="T:GOTSDK.Position.Scenario3D.ReceiverConfiguration.ConfigStatus">
+            <summary>
+            Current status of a receiver configuration
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ReceiverConfiguration.ConfigStatus.Valid">
+            <summary>
+            Ok
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ReceiverConfiguration.ConfigStatus.InvalidAngle">
+            <summary>
+            All angles in the triangle must be between 20 and 150 degrees.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Position.Scenario3D.ReceiverConfiguration.ConfigStatus.InvalidDistance">
+            <summary>
+            The distance between receivers in the triangle must be between 30 cm and 700 cm.
+            </summary>
+        </member>
+        <member name="E:GOTSDK.Position.Scenario3D.ReceiverConfiguration.PropertyChanged">
+            <summary>
+            Used for databinding
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ReceiverConfiguration.Receivers">
+            <summary>
+            The receiver addresses which are part of this configuration
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ReceiverConfiguration.Status">
+            <summary>
+            The status of this configuration
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Scenario3D.ReceiverConfiguration.IsEnabled">
+            <summary>
+            Is this configuration active. This is used for disallowing the parent scenario to use this configuration.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.ReceiverConfiguration.GetLowestLevel(GOTSDK.Measurement)">
+            <summary>
+            Given a measurement, find the lowest level.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.ReceiverConfiguration.GetAverageLevel(GOTSDK.Measurement)">
+            <summary>
+            Given a measurement, calculate the average level.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Scenario3D.ReceiverConfiguration.TryCalculatePosition(GOTSDK.Measurement,System.Windows.Media.Media3D.Point3D@,System.Windows.Media.Media3D.Point3D@)">
+            <summary>
+            Try to calculate a position from a measurement
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Trilateration">
+            <summary>
+            Various methods for performing Trilateration
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Trilateration.TrilaterateLinearEquations(System.Windows.Media.Media3D.Point3D,System.Double,System.Windows.Media.Media3D.Point3D,System.Double,System.Windows.Media.Media3D.Point3D,System.Double,System.Windows.Media.Media3D.Point3D@,System.Windows.Media.Media3D.Point3D@)">
+            <summary>
+            Trilaterate 3 satellites and find their two intersection points. 
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Trilateration.Trilaterate(System.Collections.Generic.IList{GOTSDK.Position.Trilateration.Input},GOTSDK.Position.Trilateration.Parameters,System.Windows.Media.Media3D.Point3D@)">
+            <summary>
+            Trilaterate N satellites and try to find a position.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Position.Trilateration.Input">
+            <summary>
+            Represents input data from a satellite.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Trilateration.Input.Address">
+            <summary>
+            The address of the satellite
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Trilateration.Input.Position">
+            <summary>
+            The known position of the satellite
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Trilateration.Input.Distance">
+            <summary>
+            The measured distance to the satellite
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Position.Trilateration.Input.Level">
+            <summary>
+            The level of the measurement. Higher is better.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Position.Trilateration.Input.#ctor(System.Windows.Media.Media3D.Point3D,System.Double,System.Int32)">
+            <summary>
+            Construct a new Input
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Receiver">
+            <summary>
+            Represents a receiver (also known as a satellite)
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.GOTAddress">
+            <summary>
+            GOT address for the receiver
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.State">
+            <summary>
+            The current state
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.Type">
+            <summary>
+            The type of unit.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.FirmwareMinor">
+            <summary>
+            The receiver firmware version
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.FirmwareMajor">
+            <summary>
+            The receiver firmware version
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Receiver.FirmwareVersion">
+            <summary>
+            The firmware version. Combines FirmwareMinor and FirmwareMajor.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Receiver.ToString">
+            <summary>
+            Get a display-friendly string representation of this object.
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Transmitter">
+            <summary>
+            Represents a connected Transmitter
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Transmitter.UltraSonicLevel">
+            <summary>
+            The ultra sound level for a transmitter. Can be set both globally and individually.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.UltraSonicLevel.Lowest">
+            <summary>
+            The lowest level
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.UltraSonicLevel.Low">
+            <summary>
+            Low level
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.UltraSonicLevel.Medium">
+            <summary>
+            Medium level
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.UltraSonicLevel.High">
+            <summary>
+            High level
+            </summary>
+        </member>
+        <member name="T:GOTSDK.Transmitter.TransmitterState">
+            <summary>
+            The state and priority for a transmitter.
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.TransmitterState.ActiveHigh">
+            <summary>
+            Highest priority (standard, 100%)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.TransmitterState.ActiveMedium">
+            <summary>
+            Medium priority (50%)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.TransmitterState.ActiveLow">
+            <summary>
+            Low priority (25%)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.TransmitterState.ActiveLowest">
+            <summary>
+            Lowest priority (12.5%)
+            </summary>
+        </member>
+        <member name="F:GOTSDK.Transmitter.TransmitterState.Deactivated">
+            <summary>
+            Not active
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.GOTAddress">
+            <summary>
+            The GOT radio address of the transmitter. 
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.DCCAddress">
+            <summary>
+            The DCC address used. Will be 0 if not used.
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.Type">
+            <summary>
+            The TPCLINK_UNIT_TYPE of the transmitter (only relevant for Master2X).
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.State">
+            <summary>
+            The TPCLINK_UNIT_STATE of the transmitter (only relevant for Master2X).
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.FirmwareMinor">
+            <summary>
+            Firmware version
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.FirmwareMajor">
+            <summary>
+            Firmware version
+            </summary>
+        </member>
+        <member name="P:GOTSDK.Transmitter.FirmwareVersion">
+            <summary>
+            The firmware version. Combines FirmwareMinor and FirmwareMajor.
+            </summary>
+        </member>
+        <member name="M:GOTSDK.Transmitter.ToString">
+            <summary>
+            Get a string representation of the current object.
+            </summary>
+        </member>
+    </members>
+</doc>
