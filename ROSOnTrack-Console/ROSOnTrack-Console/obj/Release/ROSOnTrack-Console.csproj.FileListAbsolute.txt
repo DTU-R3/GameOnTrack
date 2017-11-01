@@ -1,0 +1,11 @@
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\ROSOnTrack-Console.exe.config
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\ROSOnTrack-Console.exe
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\ROSOnTrack-Console.pdb
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\GOTSDK.dll
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\HelixToolkit.Wpf.dll
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\Messages.dll
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\Ros_CSharp.dll
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Release\XmlRpc_Wrapper.dll
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Release\ROSOnTrack-Console.csproj.CoreCompileInputs.cache
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Release\ROSOnTrack-Console.exe
+C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Release\ROSOnTrack-Console.pdb
