@@ -4,3 +4,9 @@ C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\bin\Debug\ROSOnTrac
 C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.csproj.CoreCompileInputs.cache
 C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.exe
 C:\Users\zhong\Desktop\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.pdb
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\bin\Debug\ROSOnTrack-Console.exe.config
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\bin\Debug\ROSOnTrack-Console.exe
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\bin\Debug\ROSOnTrack-Console.pdb
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.csproj.CoreCompileInputs.cache
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.exe
+E:\Git\GameOnTrack\ROSOnTrack-Console\ROSOnTrack-Console\obj\Debug\ROSOnTrack-Console.pdb

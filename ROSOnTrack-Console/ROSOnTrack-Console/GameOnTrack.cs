@@ -2,6 +2,8 @@
 using GOTSDK.Master;
 using GOTSDK.Master.Master2XTypes;
 using GOTSDK.Position;
+using Messages.geometry_msgs;
+using Ros_CSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,6 +99,16 @@ namespace ROSOnTrack_Console
             {
                 Program.connectedTransmitters.Add(transmitter);
                 Program.master.SetTransmitterState(transmitter.GOTAddress, GetTransmitterState(transmitter.GOTAddress), Transmitter.UltraSonicLevel.High);
+
+                GOTData newGOT = new GOTData();
+                newGOT.address = transmitter.GOTAddress.ToString();
+                newGOT.x = 0;
+                newGOT.y = 0;
+                newGOT.z = 0;
+                Publisher<Vector3> pub;
+                pub = Program.nh.advertise<Vector3>("/GameOnTrack/" + newGOT.address, 10);
+                Program.sensors.Add(newGOT);
+                Program.publishers.Add(pub);
             }
         }
 
@@ -135,17 +147,14 @@ namespace ROSOnTrack_Console
                 CalculatedPosition pos;
                 if (PositionCalculator.TryCalculatePosition(measurement, Program.scenarios.ToArray(), out pos))
                 {
-                    if( pos.TxAddress.ToString() == Program.sensor1.address.ToString() )
+                    for (int i = 0; i < Program.sensors.Count; i++)
                     {
-                        Program.sensor1.x = pos.Position.X;
-                        Program.sensor1.y = pos.Position.Y;
-                        Program.sensor1.z = pos.Position.Z;
-                    }
-                    if (pos.TxAddress.ToString() == Program.sensor2.address.ToString())
-                    {
-                        Program.sensor2.x = pos.Position.X;
-                        Program.sensor2.y = pos.Position.Y;
-                        Program.sensor2.z = pos.Position.Z;
+                        if (pos.TxAddress.ToString() == Program.sensors[i].address)
+                        {
+                            Program.sensors[i].x = pos.Position.X;
+                            Program.sensors[i].y = pos.Position.Y;
+                            Program.sensors[i].z = pos.Position.Z;
+                        }
                     }
                 }
                 else
