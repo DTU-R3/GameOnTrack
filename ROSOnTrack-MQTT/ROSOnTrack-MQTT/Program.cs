@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using MQTTnet.Core;
 using MQTTnet.Core.Client;
 using MQTTnet;
+using System.Globalization;
 
 namespace ROSOnTrack_MQTT
 {
@@ -57,7 +58,7 @@ namespace ROSOnTrack_MQTT
             {
                 var options = new MqttClientOptions
                 {
-                    ClientId = "/GameOnTrack/R232",
+                    ClientId = "/GamesOnTrack/R232",
                     CleanSession = true,
                     ChannelOptions = new MqttClientTcpOptions
                     {
@@ -70,7 +71,7 @@ namespace ROSOnTrack_MQTT
 
                 var client = factory.CreateMqttClient();
 
-                client.Connected += async (s, e) =>
+                client.Connected += (s, e) =>
                 {
                     Console.WriteLine("### CONNECTED WITH SERVER ###");
                 };
@@ -107,15 +108,17 @@ namespace ROSOnTrack_MQTT
                     {
                         string t = options.ClientId + "/" + sensors[i].address;
 
-                        string d = "{x:" + Convert.ToInt32(sensors[i].x).ToString() + 
-                            ",y:" + Convert.ToInt32(sensors[i].y).ToString() + 
-                            ",z:" + Convert.ToInt32(sensors[i].z).ToString() + "}";
+                        var d = String.Format(CultureInfo.InvariantCulture,
+                                "{{\"x\":{0},\"y\":{1},\"z\":{2}}}",
+                                Math.Round(sensors[i].x),
+                                Math.Round(sensors[i].y),
+                                Math.Round(sensors[i].z));
 
                         var sensorMsg = new MqttApplicationMessageBuilder()
                             .WithTopic(t).WithPayload(d).WithAtLeastOnceQoS().Build();
 
                         client.PublishAsync(sensorMsg);
-                        Console.WriteLine(d);
+                        Console.WriteLine(t+" "+d);
                     }
                 }
             }
