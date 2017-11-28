@@ -57,12 +57,12 @@ namespace ROSOnTrack_MQTT
             {
                 var options = new MqttClientOptions
                 {
-                    ClientId = "GameOnTrack/R371",
+                    ClientId = "/GameOnTrack/R232",
                     CleanSession = true,
                     ChannelOptions = new MqttClientTcpOptions
                     {
-                        Server = "localhost"
-                        // Server = "172.30.0.1"
+                        // Server = "localhost"
+                        Server = "172.30.0.1"
                     },
                 };
 
@@ -70,23 +70,9 @@ namespace ROSOnTrack_MQTT
 
                 var client = factory.CreateMqttClient();
 
-                client.ApplicationMessageReceived += (s, e) =>
-                {
-                    Console.WriteLine("### RECEIVED APPLICATION MESSAGE ###");
-                    Console.WriteLine($"+ Topic = {e.ApplicationMessage.Topic}");
-                    Console.WriteLine($"+ Payload = {Encoding.UTF8.GetString(e.ApplicationMessage.Payload)}");
-                    Console.WriteLine($"+ QoS = {e.ApplicationMessage.QualityOfServiceLevel}");
-                    Console.WriteLine($"+ Retain = {e.ApplicationMessage.Retain}");
-                    Console.WriteLine();
-                };
-
                 client.Connected += async (s, e) =>
                 {
                     Console.WriteLine("### CONNECTED WITH SERVER ###");
-
-                    await client.SubscribeAsync(new TopicFilterBuilder().WithTopic("#").Build());
-
-                    Console.WriteLine("### SUBSCRIBED ###");
                 };
 
                 client.Disconnected += async (s, e) =>
@@ -113,7 +99,7 @@ namespace ROSOnTrack_MQTT
                     Console.WriteLine("### CONNECTING FAILED ###" + Environment.NewLine + exception);
                 }
 
-                Console.WriteLine("### WAITING FOR APPLICATION MESSAGES ###");
+                Console.WriteLine("### START PUBLISHING GAMEONTRACK DATA ###");
 
                 while (true)
                 {
@@ -123,12 +109,13 @@ namespace ROSOnTrack_MQTT
 
                         string d = "{x:" + Convert.ToInt32(sensors[i].x).ToString() + 
                             ",y:" + Convert.ToInt32(sensors[i].y).ToString() + 
-                            ",z" + Convert.ToInt32(sensors[i].z).ToString() + "}";
+                            ",z:" + Convert.ToInt32(sensors[i].z).ToString() + "}";
 
                         var sensorMsg = new MqttApplicationMessageBuilder()
                             .WithTopic(t).WithPayload(d).WithAtLeastOnceQoS().Build();
 
                         client.PublishAsync(sensorMsg);
+                        Console.WriteLine(d);
                     }
                 }
             }

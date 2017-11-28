@@ -97,6 +97,13 @@ namespace ROSOnTrack_MQTT
             {
                 Program.connectedTransmitters.Add(transmitter);
                 Program.master.SetTransmitterState(transmitter.GOTAddress, GetTransmitterState(transmitter.GOTAddress), Transmitter.UltraSonicLevel.High);
+
+                GOTData newGOT = new GOTData();
+                newGOT.address = transmitter.GOTAddress.ToString();
+                newGOT.x = 0;
+                newGOT.y = 0;
+                newGOT.z = 0;
+                Program.sensors.Add(newGOT);
             }
         }
 
