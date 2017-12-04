@@ -1,0 +1,12 @@
+﻿{
+  "origin": {
+    "longitude": 123.0,
+    "latitude": 234.0,
+    "altitude": 55.0
+  },
+  "x1m": {
+    "longitude": 123.0,
+    "latitude": 234.0,
+    "altitude": 55.0
+  }
+}

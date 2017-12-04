@@ -1,56 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
-using GOTSDK;
-using GOTSDK.Master;
-using GOTSDK.Position;
-using System.Collections.ObjectModel;
+using System.Web.Script.Serialization;
+using MQTTnet;
 using MQTTnet.Core;
 using MQTTnet.Core.Client;
-using MQTTnet;
-using System.Globalization;
 
 namespace ROSOnTrack_MQTT
 {
-    class Program
+    sealed class Program
     {
-        // GameOnTrack configuration
-        static public ObservableCollection<Transmitter> connectedTransmitters = new ObservableCollection<Transmitter>();
-        static public ObservableCollection<Receiver> connectedReceivers = new ObservableCollection<Receiver>();
-        static public ObservableCollection<Scenario3D> scenarios = new ObservableCollection<Scenario3D>();
-        static public Master2X master;
-        static public string masterConnectionStatus = "Offline";
-        static public string masterVersion = "Unknown";
-        static public List<GOTData> sensors = new List<GOTData>();
+        static IMqttClient mqttClient = null;
+        static JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
 
         static void Main(string[] args)
+        {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Coordinate transformation from XYZ to GPS
+        /// </summary>
+        /// <param name="args"></param>
+        static async Task MainAsync(string[] args)
         {
             // Init GameOnTrack
             try
             {
-                if (GameOnTrack.LoadCalib())
+                if (GamesOnTrack.LoadCalib())
                 {
-                    Console.WriteLine("GameOnTrack calibration file found. ");
-                    GameOnTrack.Init();
-                    if (GameOnTrack.Connect())
+                    Console.Error.WriteLine("GameOnTrack calibration file found. ");
+                    GamesOnTrack.Init();
+                    if (GamesOnTrack.Connect())
                     {
-                        Console.WriteLine("GameOnTrack master detected. ");
+                        Console.Error.WriteLine("GameOnTrack master detected. ");
                     }
                     else
                     {
-                        Console.WriteLine("Error: Master can not be detected. ");
+                        Console.Error.WriteLine("Error: Master can not be detected. ");
+                        return;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Error: Can not find GameOnTrack Calibration file. ");
+                    Console.Error.WriteLine("Error: Can not find GameOnTrack Calibration file. ");
+                    return;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception: " + ex.Message.ToString());
+                Console.Error.WriteLine("Exception: " + ex.Message.ToString());
+                return;
             }
 
             // Init MQTT
@@ -62,71 +62,62 @@ namespace ROSOnTrack_MQTT
                     CleanSession = true,
                     ChannelOptions = new MqttClientTcpOptions
                     {
-                        // Server = "localhost"
-                        Server = "172.30.0.1"
+                        // Server = "localhost",
+                        Server = "172.30.0.1",
                     },
                 };
 
                 var factory = new MqttFactory();
 
-                var client = factory.CreateMqttClient();
+                mqttClient = factory.CreateMqttClient();
 
-                client.Connected += (s, e) =>
+                mqttClient.Connected += (s, e) =>
                 {
-                    Console.WriteLine("### CONNECTED WITH SERVER ###");
+                    Console.Error.WriteLine("### CONNECTED WITH SERVER ###");
                 };
 
-                client.Disconnected += async (s, e) =>
+                mqttClient.Disconnected += async (s, e) =>
                 {
-                    Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                    Console.Error.WriteLine("### DISCONNECTED FROM SERVER ###");
                     await Task.Delay(TimeSpan.FromSeconds(5));
 
                     try
                     {
-                        await client.ConnectAsync(options);
+                        await mqttClient.ConnectAsync(options);
                     }
                     catch
                     {
-                        Console.WriteLine("### RECONNECTING FAILED ###");
+                        Console.Error.WriteLine("### RECONNECTING FAILED ###");
                     }
                 };
 
                 try
                 {
-                    client.ConnectAsync(options);
+                    await mqttClient.ConnectAsync(options);
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine("### CONNECTING FAILED ###" + Environment.NewLine + exception);
-                }
-
-                Console.WriteLine("### START PUBLISHING GAMEONTRACK DATA ###");
-
-                while (true)
-                {
-                    for (int i = 0; i < sensors.Count; i++)
-                    {
-                        string t = options.ClientId + "/" + sensors[i].address;
-
-                        var d = String.Format(CultureInfo.InvariantCulture,
-                                "{{\"x\":{0},\"y\":{1},\"z\":{2}}}",
-                                Math.Round(sensors[i].x),
-                                Math.Round(sensors[i].y),
-                                Math.Round(sensors[i].z));
-
-                        var sensorMsg = new MqttApplicationMessageBuilder()
-                            .WithTopic(t).WithPayload(d).WithAtLeastOnceQoS().Build();
-
-                        client.PublishAsync(sensorMsg);
-                        Console.WriteLine(t+" "+d);
-                    }
+                    Console.Error.WriteLine("### CONNECTING FAILED ###" + Environment.NewLine + exception);
                 }
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception);
+                Console.Error.WriteLine(exception);
             }
+
+            Console.Error.WriteLine("### START PUBLISHING GAMEONTRACK DATA ###");
+            GamesOnTrack.OnPositionEvent += GamesOnTrack_OnPositionEvent;
+
+            Console.ReadLine();
         }
 
+        static void GamesOnTrack_OnPositionEvent(GOTSDK.Measurement gotMeasurement, GPSObservation gpsObservation)
+        {
+            string topic = "/GamesOnTrack/R232" + "/" + gotMeasurement.TxAddress;
+            var data = javaScriptSerializer.Serialize(gpsObservation);
+            var sensorMsg = new MqttApplicationMessageBuilder().WithTopic(topic).WithPayload(data).Build();
+            mqttClient.PublishAsync(sensorMsg);
+            Console.WriteLine(data);
+        }
     }
 }
