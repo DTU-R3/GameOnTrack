@@ -12,6 +12,7 @@ namespace ROSOnTrack_MQTT
     {
         static IMqttClient mqttClient = null;
         static JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
+        static public String location = "";
 
         static void Main(string[] args)
         {
@@ -58,11 +59,10 @@ namespace ROSOnTrack_MQTT
             {
                 var options = new MqttClientOptions
                 {
-                    ClientId = "/GamesOnTrack/R232",
+                    ClientId = "/GamesOnTrack/"+location,
                     CleanSession = true,
                     ChannelOptions = new MqttClientTcpOptions
                     {
-                        // Server = "localhost",
                         Server = "172.30.0.1",
                     },
                 };
@@ -113,7 +113,7 @@ namespace ROSOnTrack_MQTT
 
         static void GamesOnTrack_OnPositionEvent(GOTSDK.Measurement gotMeasurement, GPSObservation gpsObservation)
         {
-            string topic = "/GamesOnTrack/R232" + "/" + gotMeasurement.TxAddress;
+            string topic = "/GamesOnTrack/" + location + "/" + gotMeasurement.TxAddress;
             var data = javaScriptSerializer.Serialize(gpsObservation);
             var sensorMsg = new MqttApplicationMessageBuilder().WithTopic(topic).WithPayload(data).Build();
             mqttClient.PublishAsync(sensorMsg);

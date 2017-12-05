@@ -16,3 +16,13 @@ C:\Users\zhong\Desktop\GamesOnTrack-ROS-master\ROSOnTrack-MQTT\ROSOnTrack-MQTT\b
 C:\Users\zhong\Desktop\GamesOnTrack-ROS-master\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.csproj.CoreCompileInputs.cache
 C:\Users\zhong\Desktop\GamesOnTrack-ROS-master\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.exe
 C:\Users\zhong\Desktop\GamesOnTrack-ROS-master\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.pdb
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\Calibration.xml
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\GPS-origin.json
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.exe.config
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.exe
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.pdb
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\MQTTnet.Core.dll
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\MQTTnet.dll
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.csproj.CoreCompileInputs.cache
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.exe
+M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.pdb
