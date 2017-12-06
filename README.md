@@ -4,6 +4,9 @@ The code to calibrate the GameOnTrack system and sending data to ROS.
 Product page:
 * http://www.gamesontrack.dk/
 
+Driver for the Master:
+https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers
+
 ROS .net is used in this project:
 * https://github.com/DTU-R3/ROS.NET
 

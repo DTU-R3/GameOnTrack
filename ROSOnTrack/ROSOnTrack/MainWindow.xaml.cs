@@ -35,7 +35,7 @@ namespace ROSOnTrack
         static public GOTData sensor2 = new GOTData();
         static public double x = 0, y = 0, theta = 0;
         static public double sensorDis = 100;
-        static public int GOTAddress1 = 41269;
+        static public int GOTAddress1 = 41267;
         static public int GOTAddress2 = 41272;
 
         // GameOnTrack configuration
@@ -49,15 +49,6 @@ namespace ROSOnTrack
         // Timer
         DispatcherTimer timer = new DispatcherTimer();
 
-        // ROS .net variables
-        Publisher<Vector3> sensor1Pub;
-        Publisher<Vector3> sensor2Pub;
-        Publisher<Pose2D> robotPosPub;
-        NodeHandle nh;
-        Vector3 data1_msg = new Vector3();
-        Vector3 data2_msg = new Vector3();
-        Pose2D result_msg = new Pose2D();
-
         #endregion
 
         #region Constructior
@@ -66,11 +57,6 @@ namespace ROSOnTrack
         {
             InitializeComponent();
             Log.Init();
-            ROS.Init(new string[0], "GameOnTrack");
-            nh = new NodeHandle();
-            sensor1Pub = nh.advertise<Vector3>("/got1_data", 10);
-            sensor2Pub = nh.advertise<Vector3>("/got2_data", 10);
-            robotPosPub = nh.advertise<Pose2D>("/got_result", 10);
         }
 
         #endregion
@@ -182,25 +168,6 @@ namespace ROSOnTrack
             Rob_yTxt.Text = Convert.ToInt32(y).ToString();
             Rob_thTxt.Text = Convert.ToInt32(theta).ToString();
             Rob_thrTxt.Text = theta_r.ToString("0.00");
-
-            // Publish the data to ROS
-            if (ROS.ok)
-            {
-                data1_msg.x = Convert.ToInt32(sensor1.x);
-                data1_msg.y = Convert.ToInt32(sensor1.y);
-                data1_msg.z = Convert.ToInt32(sensor1.z);
-                data2_msg.x = Convert.ToInt32(sensor2.x);
-                data2_msg.y = Convert.ToInt32(sensor2.y);
-                data2_msg.z = Convert.ToInt32(sensor2.z);
-                result_msg.x = Convert.ToInt32(x);
-                result_msg.y = Convert.ToInt32(y);
-                result_msg.theta = theta_r;
-
-                sensor1Pub.publish(data1_msg);
-                sensor2Pub.publish(data2_msg);
-                robotPosPub.publish(result_msg);
-            }
-
         }
 
         private void Sender1Btn_Click(object sender, RoutedEventArgs e)

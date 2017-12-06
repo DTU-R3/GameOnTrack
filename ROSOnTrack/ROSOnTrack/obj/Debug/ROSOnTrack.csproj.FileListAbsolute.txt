@@ -13,3 +13,17 @@ C:\Users\zhong\Desktop\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.csproj.CoreCom
 C:\Users\zhong\Desktop\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.exe
 C:\Users\zhong\Desktop\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.pdb
 C:\Users\zhong\Desktop\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.csprojResolveAssemblyReference.cache
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\bin\Debug\ROSOnTrack.exe.config
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\bin\Debug\ROSOnTrack.exe
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\bin\Debug\ROSOnTrack.pdb
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\MainWindow.g.cs
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\App.g.cs
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack_MarkupCompile.cache
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack_MarkupCompile.lref
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\MainWindow.baml
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.g.resources
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.Properties.Resources.resources
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.csproj.GenerateResource.Cache
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.csproj.CoreCompileInputs.cache
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.exe
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack\ROSOnTrack\obj\Debug\ROSOnTrack.pdb
