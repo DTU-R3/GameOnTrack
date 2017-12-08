@@ -34,16 +34,9 @@ namespace ROSOnTrack_MQTT
         public static double origin_X = 0.0, origin_Y = 0.0, origin_Z = 0.0;
         public static double x_calib_X = 0.0, x_calib_Y = 0.0, x_calib_Z = 0.0;
 
-        /*static readonly ICoordinateSystem epsg4326 = cf.CreateFromWkt("GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]]");
-
-        static readonly ICoordinateSystem epsg3785 = cf.CreateFromWkt("PROJCS[\"Popular Visualisation CRS / Mercator\", GEOGCS[\"Popular Visualisation CRS\", DATUM[\"Popular Visualisation Datum\", SPHEROID[\"Popular Visualisation Sphere\", 6378137, 0, AUTHORITY[\"EPSG\", \"7059\"]], TOWGS84[0, 0, 0, 0, 0, 0, 0], AUTHORITY[\"EPSG\", \"6055\"]], PRIMEM[\"Greenwich\", 0, AUTHORITY[\"EPSG\", \"8901\"]], UNIT[\"degree\", 0.0174532925199433, AUTHORITY[\"EPSG\", \"9102\"]], AXIS[\"E\", EAST], AXIS[\"N\", NORTH], AUTHORITY[\"EPSG\", \"4055\"]], PROJECTION[\"Mercator\"], PARAMETER[\"False_Easting\", 0], PARAMETER[\"False_Northing\", 0], PARAMETER[\"Central_Meridian\", 0], PARAMETER[\"Latitude_of_origin\", 0], UNIT[\"metre\", 1, AUTHORITY[\"EPSG\", \"9001\"]], AXIS[\"East\", EAST], AXIS[\"North\", NORTH], AUTHORITY[\"EPSG\", \"3785\"]]");
-
-        static readonly ICoordinateTransformation ct = ctf.CreateFromCoordinateSystems( , epsg4326);
-        static readonly ICoordinateTransformation ct_reverse = ctf.CreateFromCoordinateSystems(epsg4326, epsg3785);*/
-
         static CoordinateTransformationFactory _ctf = new CoordinateTransformationFactory();
-        static ICoordinateTransformation WGS84ToMercator = _ctf.CreateFromCoordinateSystems(GeographicCoordinateSystem.WGS84, ProjectedCoordinateSystem.WebMercator);
-        static ICoordinateTransformation MercatorToWGS84 = _ctf.CreateFromCoordinateSystems(ProjectedCoordinateSystem.WebMercator, GeographicCoordinateSystem.WGS84);
+        static ICoordinateTransformation WGS84ToUTM = _ctf.CreateFromCoordinateSystems(GeographicCoordinateSystem.WGS84, ProjectedCoordinateSystem.WGS84_UTM(34, true));
+        static ICoordinateTransformation UTMToWGS84 = _ctf.CreateFromCoordinateSystems(ProjectedCoordinateSystem.WGS84_UTM(34, true), GeographicCoordinateSystem.WGS84);
 
         public GPSUtils(GPSOrigin gpsOrigin)
         {
@@ -56,8 +49,8 @@ namespace ROSOnTrack_MQTT
             x_calib_alt = gpsOrigin.x_calib.altitude;
             double[] origin_calib_gps = { origin_lon, origin_lat, origin_alt };
             double[] x_calib_gps = { x_calib_lon, x_calib_lat, x_calib_alt };
-            var origin_cartesian = WGS84ToMercator.MathTransform.Transform(origin_calib_gps);
-            var x_calib_cartesian = WGS84ToMercator.MathTransform.Transform(x_calib_gps);
+            var origin_cartesian = WGS84ToUTM.MathTransform.Transform(origin_calib_gps);
+            var x_calib_cartesian = WGS84ToUTM.MathTransform.Transform(x_calib_gps);
             origin_X = origin_cartesian[0];
             origin_Y = origin_cartesian[1];
             origin_Z = origin_cartesian[2];
@@ -73,7 +66,7 @@ namespace ROSOnTrack_MQTT
             double originalPos_Y = x * Math.Sin(theta) + y * Math.Cos(theta) + origin_Y;
             double originalPos_Z = z + origin_Z;
             double[] originalPos = { originalPos_X, originalPos_Y, originalPos_Z };
-            double[] resultPos = MercatorToWGS84.MathTransform.Transform(originalPos);
+            double[] resultPos = UTMToWGS84.MathTransform.Transform(originalPos);
 
             return new GPSObservation
             {

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\zhong\Desktop\GOTSDKSample\obj\x86\Debug\
+C:\Workspace\Git\GamesOnTrack-ROS\GOTSDKSample\obj\x86\Debug\
 GOTSDKSample
 none
 false
 DEBUG;TRACE
-C:\Users\zhong\Desktop\GOTSDKSample\App.xaml
+C:\Workspace\Git\GamesOnTrack-ROS\GOTSDKSample\App.xaml
 31784404646
 
-13-1969798480
-14-122898877
+13-184455493
+14628924952
 MainWindow.xaml;CalibrationWindow.xaml;MergeWindow.xaml;
 
 True

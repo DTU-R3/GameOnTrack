@@ -117,7 +117,7 @@ namespace ROSOnTrack_MQTT
             var data = javaScriptSerializer.Serialize(gpsObservation);
             var sensorMsg = new MqttApplicationMessageBuilder().WithTopic(topic).WithPayload(data).Build();
             mqttClient.PublishAsync(sensorMsg);
-            Console.WriteLine(data);
+            Console.WriteLine(topic +  ": " +data);
         }
     }
 }

@@ -40,3 +40,4 @@ C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSO
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\GeoAPI.dll
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ProjNet.dll
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\GeoAPI.xml
+C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.csprojResolveAssemblyReference.cache
