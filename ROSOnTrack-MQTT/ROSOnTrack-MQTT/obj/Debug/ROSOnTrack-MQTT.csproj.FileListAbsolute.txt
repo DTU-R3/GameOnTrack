@@ -28,7 +28,6 @@ M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSO
 M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.pdb
 M:\Documents\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\obj\Debug\ROSOnTrack-MQTT.csprojResolveAssemblyReference.cache
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\GPS-origin.json
-C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\Calibration.xml
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.exe.config
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.exe
 C:\Workspace\Git\GamesOnTrack-ROS\ROSOnTrack-MQTT\ROSOnTrack-MQTT\bin\Debug\ROSOnTrack-MQTT.pdb

@@ -122,7 +122,7 @@ namespace ROSOnTrack_MQTT
             }
             else if (measurement.RSSI == 0)
             {
-                Console.Error.WriteLine("GameOnTrack: Transmitter radio lost.");
+                Console.Error.WriteLine("GameOnTrack: Transmitter radio lost for " + measurement.TxAddress);
             }
             else if (measurement.RxMeasurements.Count(dist => dist.Distance > 0) < 3)
             {
@@ -130,6 +130,7 @@ namespace ROSOnTrack_MQTT
             }
             else
             {
+                Console.Error.WriteLine("Address: {0}, RSSI: {1}", measurement.TxAddress, measurement.RSSI);
                 CalculatedPosition pos;
                 if (PositionCalculator.TryCalculatePosition(measurement, scenarios.ToArray(), out pos))
                 {

@@ -1,13 +1,13 @@
 ﻿{
-  "location" : "R232",
+  "location": "R232",
   "origin": {
-    "longitude": 12.514083598282298,
-    "latitude": 55.78268258568232,
+    "longitude": 12.514173060177,
+    "latitude": 55.7827023805766,
     "altitude": 0.0
   },
   "x_calib": {
-    "longitude": 12.51413408434891,
-    "latitude": 55.782673839655416,
+    "longitude": 12.5141730600681,
+    "latitude": 55.7827330658044,
     "altitude": 0.0
   }
 }
