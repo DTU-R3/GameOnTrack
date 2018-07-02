@@ -69,20 +69,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GPSUtils.cs" />
     <Compile Include="GamesOnTrack.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenario3DPersistence.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Calibration.xml" />
-    <Content Include="R232.xml" />
     <None Include="App.config" />
-    <Content Include="B371.xml" />
-    <Content Include="GPS-origin.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

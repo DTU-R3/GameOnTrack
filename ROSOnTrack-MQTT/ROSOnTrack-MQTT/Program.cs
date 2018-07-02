@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using GOTSDK.Position;
 using MQTTnet;
 using MQTTnet.Core;
 using MQTTnet.Core.Client;
@@ -111,10 +112,10 @@ namespace ROSOnTrack_MQTT
             Console.ReadLine();
         }
 
-        static void GamesOnTrack_OnPositionEvent(GOTSDK.Measurement gotMeasurement, GPSObservation gpsObservation)
+        static void GamesOnTrack_OnPositionEvent(GOTSDK.Measurement gotMeasurement, GOTObservation p)
         {
             string topic = "/GamesOnTrack/" + location + "/" + gotMeasurement.TxAddress;
-            var data = javaScriptSerializer.Serialize(gpsObservation);
+            var data = javaScriptSerializer.Serialize(p);
             var sensorMsg = new MqttApplicationMessageBuilder().WithTopic(topic).WithPayload(data).Build();
             mqttClient.PublishAsync(sensorMsg);
             Console.WriteLine(topic +  ": " +data);

@@ -12,6 +12,14 @@ using GOTSDK.Position;
 
 namespace ROSOnTrack_MQTT
 {
+    public struct GOTObservation
+    {
+        public double stamp;
+        public double x;
+        public double y;
+        public double z;
+    }
+
     public static class GamesOnTrack
     {
         // GameOnTrack configuration
@@ -21,29 +29,14 @@ namespace ROSOnTrack_MQTT
         static Master2X master;
 
         static readonly string gotCalibPath = AppDomain.CurrentDomain.BaseDirectory + "Calibration.xml";
-        static readonly string gpsCalibPath = AppDomain.CurrentDomain.BaseDirectory + "GPS-origin.json";
 
-        static GPSUtils gpsUtils;
         static JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
 
-        public delegate void PositionEventHandler(Measurement gotMeasurement, GPSObservation gpsObservation);
+        public delegate void PositionEventHandler(Measurement gotMeasurement, GOTObservation gpsObservation);
         public static event PositionEventHandler OnPositionEvent;
 
         public static bool LoadCalib()
         {
-            // Init GPS data
-            try
-            {
-                var json = File.ReadAllText(gpsCalibPath);
-                var gpsOrigin = javaScriptSerializer.Deserialize<GPSOrigin>(json);
-                gpsUtils = new GPSUtils(gpsOrigin);
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine("Exception: " + ex.Message.ToString());
-                return false;
-            }
-
             try
             {
                 var doc = XDocument.Load(gotCalibPath);
@@ -134,8 +127,12 @@ namespace ROSOnTrack_MQTT
                 CalculatedPosition pos;
                 if (PositionCalculator.TryCalculatePosition(measurement, scenarios.ToArray(), out pos))
                 {
-                    var gpsObservation = gpsUtils.XYZtoGPS(pos.Position.X / 1000.0, pos.Position.Y / 1000.0, pos.Position.Z / 1000.0);
-                    OnPositionEvent?.Invoke(measurement, gpsObservation);
+                    GOTObservation got_pos = new GOTObservation();
+                    got_pos.stamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+                    got_pos.x = pos.Position.X / 1000.0;
+                    got_pos.y = pos.Position.Y / 1000.0;
+                    got_pos.z = pos.Position.Z / 1000.0;
+                    OnPositionEvent?.Invoke(measurement, got_pos);
                 }
                 else
                 {
