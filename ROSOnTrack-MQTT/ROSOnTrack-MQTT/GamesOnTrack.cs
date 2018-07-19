@@ -14,7 +14,6 @@ namespace ROSOnTrack_MQTT
 {
     public struct GOTObservation
     {
-        public double stamp;
         public double x;
         public double y;
         public double z;
@@ -128,7 +127,6 @@ namespace ROSOnTrack_MQTT
                 if (PositionCalculator.TryCalculatePosition(measurement, scenarios.ToArray(), out pos))
                 {
                     GOTObservation got_pos = new GOTObservation();
-                    got_pos.stamp = DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
                     got_pos.x = pos.Position.X / 1000.0;
                     got_pos.y = pos.Position.Y / 1000.0;
                     got_pos.z = pos.Position.Z / 1000.0;

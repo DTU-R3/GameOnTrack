@@ -114,7 +114,7 @@ namespace ROSOnTrack_MQTT
 
         static void GamesOnTrack_OnPositionEvent(GOTSDK.Measurement gotMeasurement, GOTObservation p)
         {
-            string topic = "/GamesOnTrack/" + location + "/" + gotMeasurement.TxAddress;
+            string topic = "/GamesOnTrack/" + gotMeasurement.TxAddress;
             var data = javaScriptSerializer.Serialize(p);
             var sensorMsg = new MqttApplicationMessageBuilder().WithTopic(topic).WithPayload(data).Build();
             mqttClient.PublishAsync(sensorMsg);

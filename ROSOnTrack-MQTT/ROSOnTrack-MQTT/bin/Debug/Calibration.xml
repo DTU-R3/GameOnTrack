@@ -1,32 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Calibration>
-  <Scenario3D Main="true">
-    <CalibrationTriangle From00toX0="750" FromX0toXY="750" FromXYto00="750" />
-    <Receiver Id="31002" DistanceTo00="3725" DistanceToX0="3146" DistanceToXY="3440" />
-    <Receiver Id="31033" DistanceTo00="3700" DistanceToX0="3257" DistanceToXY="3849" />
-    <Receiver Id="31034" DistanceTo00="2959" DistanceToX0="3493" DistanceToXY="3368" />
-    <Receiver Id="31054" DistanceTo00="2572" DistanceToX0="2427" DistanceToXY="2302" />
-    <Receiver Id="31055" DistanceTo00="3135" DistanceToX0="3544" DistanceToXY="3058" />
-    <Receiver Id="31057" DistanceTo00="2505" DistanceToX0="2524" DistanceToXY="2851" />
-  </Scenario3D>
   <Scenario3D Main="false">
     <CalibrationTriangle From00toX0="750" FromX0toXY="750" FromXYto00="750" />
-    <Receiver Id="31002" DistanceTo00="3052" DistanceToX0="3436" DistanceToXY="2960" />
-    <Receiver Id="31026" DistanceTo00="2582" DistanceToX0="2454" DistanceToXY="2305" />
-    <Receiver Id="31027" DistanceTo00="2482" DistanceToX0="2494" DistanceToXY="2817" />
-    <Receiver Id="31033" DistanceTo00="2914" DistanceToX0="3432" DistanceToXY="3328" />
-    <Receiver Id="31038" DistanceTo00="2948" DistanceToX0="2676" DistanceToXY="3173" />
-    <Receiver Id="31061" DistanceTo00="3247" DistanceToX0="2761" DistanceToXY="2940" />
-    <MergeTranslation X="4176" Y="-1385" Z="0" />
-    <MergeRotationAxis X="0" Y="0" Z="1" />
-    <MergeRotationAngle Degrees="0" />
-  </Scenario3D>
-  <Scenario3D Main="false">
-    <CalibrationTriangle From00toX0="750" FromX0toXY="750" FromXYto00="750" />
-    <Receiver Id="31004" DistanceTo00="2496" DistanceToX0="2964" DistanceToXY="2879" />
-    <Receiver Id="31053" DistanceTo00="2768" DistanceToX0="3125" DistanceToXY="2638" />
-    <Receiver Id="31222" DistanceTo00="2986" DistanceToX0="3206" DistanceToXY="3086" />
-    <MergeTranslation X="-1400" Y="4350" Z="0" />
+    <Receiver Id="31010" DistanceTo00="3625" DistanceToX0="4151" DistanceToXY="3617" />
+    <Receiver Id="31031" DistanceTo00="3370" DistanceToX0="3936" DistanceToXY="3928" />
+    <Receiver Id="31080" DistanceTo00="3517" DistanceToX0="2963" DistanceToXY="3148" />
+    <Receiver Id="31081" DistanceTo00="4267" DistanceToX0="4300" DistanceToXY="3706" />
+    <Receiver Id="31223" DistanceTo00="3187" DistanceToX0="3144" DistanceToXY="3655" />
+    <MergeTranslation X="0" Y="0" Z="0" />
     <MergeRotationAxis X="0" Y="0" Z="1" />
     <MergeRotationAngle Degrees="0" />
   </Scenario3D>
